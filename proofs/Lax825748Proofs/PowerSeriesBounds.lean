@@ -5,7 +5,7 @@ noncomputable section
 
 namespace Lax825748Proofs.PowerSeriesBounds
 
-open Lax208278.FormalSeries Lax208278.Monomials Lax825748.ConvergentSeries
+open Lax825748.FormalSeries Lax825748.Monomials Lax825748.ConvergentSeries
 open scoped BigOperators
 
 theorem degree_add {d : ℕ} (I J : Fin d →₀ ℕ) :

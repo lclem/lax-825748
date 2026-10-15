@@ -1,6 +1,6 @@
 import Lax825748.Minimality
 import Lax825748.AnalyticChanges
-import Lax208278.Uniqueness
+import Lax825748.FormalUniqueness
 
 /-!
 ---
@@ -18,8 +18,8 @@ noncomputable section
 
 namespace Lax825748.Uniqueness
 
-open Lax208278.Series Lax208278.LieRank Lax208278.FormalSeries
-open Lax208278.DifferentialRepresentation AnalyticRepresentations AnalyticChanges
+open Lax825748.Series Lax825748.LieRank Lax825748.FormalSeries
+open Lax825748.DifferentialRepresentation AnalyticRepresentations AnalyticChanges
 
 axiom minimal_realizations_equivalent {X : Type} [Finite X] {d : ℕ}
     (g : NCSeries X) (hr : HasLieRank g d)

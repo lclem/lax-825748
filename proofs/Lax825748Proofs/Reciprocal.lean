@@ -5,7 +5,7 @@ noncomputable section
 
 namespace Lax825748Proofs.Reciprocal
 
-open Lax208278.FormalSeries Lax208278.Monomials Lax825748.ConvergentSeries
+open Lax825748.FormalSeries Lax825748.Monomials Lax825748.ConvergentSeries
 open WeightedMass PowerSeriesBounds MvPowerSeries.WithPiTopology
 open scoped BigOperators MvPowerSeries.WithPiTopology
 

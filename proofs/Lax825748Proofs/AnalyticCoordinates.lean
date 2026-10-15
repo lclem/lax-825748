@@ -5,9 +5,9 @@ noncomputable section
 
 namespace Lax825748Proofs.AnalyticCoordinates
 
-open Lax208278.Series Lax208278.LieRank Lax208278.Annihilator
-open Lax208278.FormalSeries Lax825748.ConvergentSeries
-open Lax208278Proofs
+open Lax825748.Series Lax825748.LieRank Lax825748.Annihilator
+open Lax825748.FormalSeries Lax825748.ConvergentSeries
+open Lax825748Proofs
 
 /--
 ---
@@ -25,7 +25,7 @@ theorem expansion_converges {X : Type} {d : ℕ}
     (U : NCSeries X) (hU : InAnnihilator K U)
     (hCU : Lax825748.ConvergenceHypothesis.Holds U) :
     ∃ f : StateSeries d, Convergent f ∧ substituteShuffle T f = U := by
-  obtain ⟨S, hS, hPBW⟩ := Lax208278.Annihilator.coordinates_exist K P hP
+  obtain ⟨S, hS, hPBW⟩ := Lax825748.Annihilator.coordinates_exist K P hP
   let φ := CoordinateEquivalence.formalChange K P hP T S hT hS
   have hφ : ∀ i, Convergent (φ.toAlgEquiv (MvPowerSeries.X i)) := by
     intro i

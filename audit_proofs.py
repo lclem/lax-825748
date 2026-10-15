@@ -3,6 +3,8 @@
 
 import hashlib
 import json
+import re
+import sys
 from pathlib import Path
 
 
@@ -13,22 +15,61 @@ def read_json(path):
     return json.loads(path.read_text())
 
 
-def check_hashes(root, files):
-    for name, expected in files.items():
-        actual = hashlib.sha256((root / name).read_bytes()).hexdigest()
-        if actual != expected:
-            raise RuntimeError(f"Frozen source changed: {root / name}")
+def check_hash(name, source, expected):
+    if hashlib.sha256(source.encode()).hexdigest() != expected:
+        raise RuntimeError(f"Frozen source changed beyond namespace relocation: {name}")
+
+
+def substitute_tokens(source, mapping):
+    pattern = re.compile(r"\b(" + "|".join(map(re.escape, mapping)) + r")\b")
+    return pattern.sub(lambda match: mapping[match.group()], source)
+
+
+def check_sources():
+    """Recover the original frozen bytes by undoing packaging-only renames."""
+    packaging = read_json(ROOT / "submission-packaging.json")
+    modules = packaging["module_renames"]
+    original_modules = {new: old for old, new in modules.items()}
+    original_tokens = {
+        new: old for old, new in packaging["foundation_token_renames"].items()
+    }
+    for name, expected in read_json(ROOT / "concept-freeze.json").items():
+        source = (ROOT / name).read_text()
+        if name == "concepts/Lax825748.lean":
+            source = "".join(
+                line for line in source.splitlines(keepends=True)
+                if line.strip().removeprefix("import ") not in original_modules
+            )
+        check_hash(name, substitute_tokens(source, original_modules), expected)
+
+    snapshot = read_json(ROOT / "foundation-snapshot.json")
+    for name, expected in snapshot["files"].items():
+        if name in packaging["foundation_original_roots"]:
+            source = packaging["foundation_original_roots"][name]
+        else:
+            kind, module_path = name.split("/", 1)
+            old_module = module_path.removesuffix(".lean").replace("/", ".")
+            new_path = modules[old_module].replace(".", "/") + ".lean"
+            source = substitute_tokens((ROOT / kind / new_path).read_text(), original_tokens)
+        check_hash(name, source, expected)
+
+    # Roots must still enumerate exactly their modules, including the foundation.
+    for kind, package in [("concepts", "Lax825748"), ("proofs", "Lax825748Proofs")]:
+        expected = "".join(
+            f"import {package}.{path.stem}\n"
+            for path in sorted((ROOT / kind / package).glob("*.lean"))
+        )
+        if (ROOT / kind / f"{package}.lean").read_text() != expected:
+            raise RuntimeError(f"Root module inventory mismatch: {package}")
+    return {new for old, new in modules.items() if old.startswith("Lax208278.")}
 
 
 def main():
-    check_hashes(ROOT, read_json(ROOT / "concept-freeze.json"))
-    snapshot = read_json(ROOT / "foundation-snapshot.json")
-    foundation = (ROOT / snapshot["snapshot"]).resolve()
-    check_hashes(foundation, snapshot["files"])
-    outputs = [
-        (foundation, read_json(foundation / "build-output.json")),
-        (ROOT, read_json(ROOT / "build-output.json")),
-    ]
+    foundation_modules = check_sources()
+    if sys.argv[1:] == ["--sources-only"]:
+        print("Approved analytic and foundation sources match their original hashes after undoing namespace relocation.")
+        return
+    outputs = [(ROOT, read_json(ROOT / "build-output.json"))]
     statements, proofs = {}, {}
     for folder, output in outputs:
         for concept in output["concepts"]:
@@ -61,10 +102,10 @@ def main():
         layers.append(layer)
         closed.update(layer)
 
-    own = sum(name.startswith("Lax825748.") for name in statements)
+    own = sum(name.rsplit(".", 1)[0] not in foundation_modules for name in statements)
     print(f"All {own} analytic statements and {len(statements) - own} foundation statements have proofs.")
     print(f"Dependency graph closes in {len(layers)} layers; no cycles or unresolved assumptions.")
-    print("Approved concept hashes, foundation hashes, and validated concept sources match.")
+    print("Original approved hashes match after undoing namespace relocation; validated concept sources match.")
     for number, layer in enumerate(layers, 1):
         print(f"\nLayer {number}:")
         for name in layer:

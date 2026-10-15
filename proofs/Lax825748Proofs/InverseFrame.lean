@@ -1,14 +1,14 @@
 import Lax825748.AnalyticChanges
 import Lax825748Proofs.Reciprocal
-import Lax208278Proofs.CDAAlgebra
+import Lax825748Proofs.CDAAlgebra
 
 noncomputable section
 
 namespace Lax825748Proofs.InverseFrame
 
-open Lax208278.FormalSeries Lax208278.CoordinateChange Lax208278.Monomials
+open Lax825748.FormalSeries Lax825748.CoordinateChange Lax825748.Monomials
 open Lax825748.ConvergentSeries
-open Lax208278Proofs ContinuousDerivations
+open Lax825748Proofs ContinuousDerivations
 open scoped BigOperators Matrix
 
 theorem constant_polynomial {d e : ℕ} (φ : StateSeries d →ₐ[ℝ] StateSeries e)

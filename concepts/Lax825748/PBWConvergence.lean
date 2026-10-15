@@ -1,6 +1,6 @@
 import Lax825748.ConvergentSeries
 import Lax825748.ConvergenceHypothesis
-import Lax208278.Annihilator
+import Lax825748.Annihilator
 
 /-!
 ---
@@ -19,8 +19,8 @@ noncomputable section
 
 namespace Lax825748.PBWConvergence
 
-open Lax208278.Series Lax208278.LieRank Lax208278.Annihilator
-open Lax208278.FormalSeries ConvergentSeries
+open Lax825748.Series Lax825748.LieRank Lax825748.Annihilator
+open Lax825748.FormalSeries ConvergentSeries
 
 axiom expansion_converges {X : Type} {d : ℕ}
     (K : LieSubalgebraOfPolynomials X) (P : Fin d → LiePolynomial X)

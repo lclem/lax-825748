@@ -19,7 +19,7 @@ noncomputable section
 
 namespace Lax825748.FactorialEstimate
 
-open Lax208278.Series Lax208278.DifferentialRepresentation
+open Lax825748.Series Lax825748.DifferentialRepresentation
 open ConvergentSeries AnalyticRepresentations
 
 def HasFactorialBound {X : Type} (g : NCSeries X) : Prop :=

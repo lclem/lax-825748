@@ -7,8 +7,8 @@ noncomputable section
 
 namespace Lax825748Proofs.AnalyticInverse
 
-open Lax208278.Series Lax208278.FormalSeries Lax208278.Monomials
-open Lax208278.CoordinateChange Lax208278.DifferentialRepresentation
+open Lax825748.Series Lax825748.FormalSeries Lax825748.Monomials
+open Lax825748.CoordinateChange Lax825748.DifferentialRepresentation
 open Lax825748.ConvergentSeries Lax825748.AnalyticRepresentations
 open InverseFrame TaylorCoefficients
 
@@ -19,8 +19,8 @@ theorem inverse_intertwining {d : ℕ} (φ : FormalChange d) (u f : StateSeries 
   induction w using FreeMonoid.recOn generalizing f with
   | one => rfl
   | of_mul i w ih =>
-    rw [Lax208278Proofs.RepresentationMap.act_cons, derivative_field,
-      Lax208278Proofs.RepresentationMap.act_cons]
+    rw [Lax825748Proofs.RepresentationMap.act_cons, derivative_field,
+      Lax825748Proofs.RepresentationMap.act_cons]
     have he : MvPowerSeries.pderiv ℝ i (φ.toAlgEquiv.symm f) =
         φ.toAlgEquiv.symm (applyVectorField (frame φ i) f) := by
       rw [← conjugate_field]

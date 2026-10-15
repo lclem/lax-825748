@@ -15,7 +15,7 @@ noncomputable section
 
 namespace Lax825748.ResidualConvergence
 
-open Lax208278.Series ConvergenceHypothesis
+open Lax825748.Series ConvergenceHypothesis
 
 axiom right_residual {X : Type} (g : NCSeries X) (hg : Holds g)
     (Q : NCPolynomial X) :

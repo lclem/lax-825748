@@ -4,7 +4,7 @@ noncomputable section
 
 namespace Lax825748Proofs.Realization
 
-open Lax208278.Series Lax208278.LieRank Lax208278.DifferentialRepresentation
+open Lax825748.Series Lax825748.LieRank Lax825748.DifferentialRepresentation
 open Lax825748.AnalyticRepresentations Lax825748.Minimality
 
 /--
@@ -19,7 +19,7 @@ theorem characterization {X : Type} [Finite X] (g : NCSeries X) :
   constructor
   · rintro ⟨e, R, ha, hR⟩
     change generatingSeries R = g at hR
-    obtain ⟨d, hd, _⟩ := Lax208278.Minimality.rank_bound R
+    obtain ⟨d, hd, _⟩ := Lax825748.FormalMinimality.rank_bound R
     refine ⟨⟨d, ?_⟩, ?_⟩
     · simpa only [hR] using hd
     · simpa only [hR] using Lax825748.NecessaryConvergence.convergence R ha
@@ -40,7 +40,7 @@ theorem least_dimension {X : Type} [Finite X] (g : NCSeries X) (d : ℕ) :
     refine ⟨Lax825748.Realization.existence g d hd hC, ?_⟩
     rintro e ⟨R, _, hR⟩
     change generatingSeries R = g at hR
-    obtain ⟨r, hr, hre⟩ := Lax208278.Minimality.rank_bound R
+    obtain ⟨r, hr, hre⟩ := Lax825748.FormalMinimality.rank_bound R
     have hrg : HasLieRank g r := by simpa only [hR] using hr
     have heq : d = r := hd.2.symm.trans hrg.2
     simpa only [heq] using hre
@@ -48,7 +48,7 @@ theorem least_dimension {X : Type} [Finite X] (g : NCSeries X) (d : ℕ) :
     change generatingSeries R = g at hR
     have hC : Lax825748.ConvergenceHypothesis.Holds g := by
       simpa only [hR] using Lax825748.NecessaryConvergence.convergence R ha
-    obtain ⟨r, hr, hrd⟩ := Lax208278.Minimality.rank_bound R
+    obtain ⟨r, hr, hrd⟩ := Lax825748.FormalMinimality.rank_bound R
     have hrg : HasLieRank g r := by simpa only [hR] using hr
     have hdr := hmin r (Lax825748.Realization.existence g r hrg hC)
     have heq : r = d := Nat.le_antisymm hrd hdr

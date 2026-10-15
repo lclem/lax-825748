@@ -14,7 +14,7 @@ noncomputable section
 
 namespace Lax825748.Minimality
 
-open Lax208278.Series Lax208278.LieRank Lax208278.DifferentialRepresentation
+open Lax825748.Series Lax825748.LieRank Lax825748.DifferentialRepresentation
 open AnalyticRepresentations
 
 def IsLeastDimension {X : Type} (g : NCSeries X) (d : ℕ) : Prop :=

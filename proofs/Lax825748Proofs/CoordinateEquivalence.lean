@@ -1,13 +1,13 @@
-import Lax208278.CoordinateChange
-import Lax208278Proofs.GeneralCoordinates
+import Lax825748.CoordinateChange
+import Lax825748Proofs.GeneralCoordinates
 
 noncomputable section
 
 namespace Lax825748Proofs.CoordinateEquivalence
 
-open Lax208278.Series Lax208278.LieRank Lax208278.Annihilator
-open Lax208278.FormalSeries Lax208278.CoordinateChange
-open Lax208278Proofs SubstitutionBasic SubstitutionAlgebra
+open Lax825748.Series Lax825748.LieRank Lax825748.Annihilator
+open Lax825748.FormalSeries Lax825748.CoordinateChange
+open Lax825748Proofs SubstitutionBasic SubstitutionAlgebra
 
 variable {X : Type} {d : ℕ}
 variable (K : LieSubalgebraOfPolynomials X) (P : Fin d → LiePolynomial X)
@@ -46,7 +46,7 @@ def algebraEquiv : StateSeries d ≃ₐ[ℝ] StateSeries d where
     rw [transfer_substitute, substitute_C S hS.1, substitute_C T hT.1]
 
 theorem transfer_continuous :
-    Lax208278.FormalSeries.FormallyContinuous (transfer K P hP S T hS hT) := by
+    Lax825748.FormalSeries.FormallyContinuous (transfer K P hP S T hS hT) := by
   intro n
   obtain ⟨m, hm⟩ := InverseContinuity.substitute_inverse_continuous P T hT.1 hT.2.2 n
   refine ⟨m, ?_⟩

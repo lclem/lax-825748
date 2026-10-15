@@ -17,7 +17,7 @@ noncomputable section
 
 namespace Lax825748.NecessaryConvergence
 
-open Lax208278.DifferentialRepresentation AnalyticRepresentations
+open Lax825748.DifferentialRepresentation AnalyticRepresentations
 
 axiom convergence {X : Type} {d : ℕ} (R : Representation X d)
     (hR : IsAnalytic R) :

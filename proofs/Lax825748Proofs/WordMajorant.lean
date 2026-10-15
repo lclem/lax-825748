@@ -1,12 +1,12 @@
 import Lax825748.FactorialEstimate
 import Lax825748Proofs.Majorants
-import Lax208278Proofs.RepresentationMap
+import Lax825748Proofs.RepresentationMap
 
 noncomputable section
 
 namespace Lax825748Proofs.WordMajorant
 
-open Lax208278.Series Lax208278.FormalSeries Lax208278.DifferentialRepresentation
+open Lax825748.Series Lax825748.FormalSeries Lax825748.DifferentialRepresentation
 open Lax825748.ConvergentSeries
 open Majorants
 open scoped BigOperators
@@ -84,7 +84,7 @@ theorem act_bound {X : Type} {d : ℕ} (R : Representation X d) {α C : ℝ}
       apply mul_le_mul_of_nonneg_right (amplitude_step d hα hC l.length)
       exact (geometric_nonnegative d hC).pow _ I
     convert hb using 1
-    · exact Lax208278Proofs.RepresentationMap.act_mul R R.output
+    · exact Lax825748Proofs.RepresentationMap.act_mul R R.output
         (FreeMonoid.ofList l) (FreeMonoid.of x)
     · simp only [List.length_append, List.length_singleton]
       congr 2
@@ -106,8 +106,8 @@ theorem word_majorant {X : Type} {d : ℕ} (R : Representation X d)
       α * (2 * (d : ℝ) * α * C) ^ w.toList.length * (w.toList.length.factorial : ℝ) := by
   have hb := act_bound R hα.le hC.le hh hA w.toList 0
   have hzero : MvPowerSeries.constantCoeff (geometric d C) = 1 := by
-    change C ^ Lax208278.Monomials.totalDegree (0 : Fin d →₀ ℕ) = 1
-    simp [Lax208278.Monomials.totalDegree]
+    change C ^ Lax825748.Monomials.totalDegree (0 : Fin d →₀ ℕ) = 1
+    simp [Lax825748.Monomials.totalDegree]
   simpa only [MvPowerSeries.coeff_zero_eq_constantCoeff, MvPowerSeries.constantCoeff_smul,
     map_pow, hzero, one_pow, smul_eq_mul, mul_one, amplitude,
     FreeMonoid.ofList_toList, generatingSeries] using hb

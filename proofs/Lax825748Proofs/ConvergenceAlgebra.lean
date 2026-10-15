@@ -5,7 +5,7 @@ noncomputable section
 
 namespace Lax825748Proofs.ConvergenceAlgebra
 
-open Lax208278.FormalSeries Lax208278.Monomials Lax825748.ConvergentSeries
+open Lax825748.FormalSeries Lax825748.Monomials Lax825748.ConvergentSeries
 open PowerSeriesBounds
 open scoped BigOperators
 open Finset.HasAntidiagonal

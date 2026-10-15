@@ -6,7 +6,7 @@ noncomputable section
 
 namespace Lax825748Proofs.Factorials
 
-open Lax208278.Series Lax208278.LieRank Lax208278.Monomials
+open Lax825748.Series Lax825748.LieRank Lax825748.Monomials
 open Lax825748.ConvergenceHypothesis
 open scoped BigOperators
 

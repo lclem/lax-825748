@@ -5,8 +5,8 @@ noncomputable section
 
 namespace Lax825748Proofs.PBWConvergence
 
-open Lax208278.Series Lax208278.LieRank Lax208278.Annihilator
-open Lax208278.FormalSeries Lax208278.Monomials Lax825748.ConvergentSeries
+open Lax825748.Series Lax825748.LieRank Lax825748.Annihilator
+open Lax825748.FormalSeries Lax825748.Monomials Lax825748.ConvergentSeries
 
 /--
 ---
@@ -22,7 +22,7 @@ theorem expansion_converges {X : Type} {d : ℕ}
     (T : NCSeries X) (hT : InAnnihilator K T)
     (hC : Lax825748.ConvergenceHypothesis.Holds T) :
     ∃ f : StateSeries d, Convergent f ∧ substituteShuffle S f = T := by
-  obtain ⟨f, hf, hc⟩ := Lax208278.Annihilator.pbw_expansion K P hP S hS hPBW T hT
+  obtain ⟨f, hf, hc⟩ := Lax825748.Annihilator.pbw_expansion K P hP S hS hPBW T hT
   obtain ⟨α, hα, C, hCpos, hbound⟩ := hC d P
   refine ⟨f, ⟨α, hα, C, hCpos, ?_⟩, hf⟩
   intro I

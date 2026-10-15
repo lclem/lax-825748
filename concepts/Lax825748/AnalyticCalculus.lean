@@ -20,7 +20,7 @@ noncomputable section
 
 namespace Lax825748.AnalyticCalculus
 
-open Lax208278.FormalSeries Lax208278.Monomials ConvergentSeries
+open Lax825748.FormalSeries Lax825748.Monomials ConvergentSeries
 
 axiom absolute_convergence {d : ℕ} (f : StateSeries d) :
   Convergent f ↔ ∃ r : ℝ, 0 < r ∧

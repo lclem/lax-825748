@@ -12,3 +12,8 @@ factorial estimates for iterated vector fields, convergence of residual
 series, and the analytic inverse function theorem. Convergence is expressed
 by geometric bounds on commutative power-series coefficients. Both the
 output and all vector-field coefficients are required to converge.
+
+The submission includes the real-coefficient algebraic foundation and its
+proofs, so it has no dependencies on other archive submissions. The source
+paper records the three approved corrections to the analytic statements
+and estimates.

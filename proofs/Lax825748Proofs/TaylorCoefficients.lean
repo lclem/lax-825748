@@ -1,12 +1,12 @@
 import Lax825748Proofs.PowerSeriesBounds
-import Lax208278Proofs.ContinuousDerivations
+import Lax825748Proofs.ContinuousDerivations
 
 noncomputable section
 
 namespace Lax825748Proofs.TaylorCoefficients
 
-open Lax208278.Series Lax208278.FormalSeries Lax208278.Monomials
-open Lax208278.DifferentialRepresentation
+open Lax825748.Series Lax825748.FormalSeries Lax825748.Monomials
+open Lax825748.DifferentialRepresentation
 open scoped BigOperators
 
 def derivativeRepresentation (d : ℕ) : Representation (Fin d) d :=
@@ -62,7 +62,7 @@ theorem derivative_word {d : ℕ} (I : Fin d →₀ ℕ) :
       · simpa only [FreeMonoid.toList_mul, List.length_append, FreeMonoid.toList_of,
           List.length_singleton, hw, Nat.add_comm] using hjn
       · intro f
-        rw [Lax208278Proofs.RepresentationMap.act_cons, derivative_field, hf,
+        rw [Lax825748Proofs.RepresentationMap.act_cons, derivative_field, hf,
           MvPowerSeries.coeff_pderiv, he]
         have hfac : (multiFactorial I : ℝ) = ((J i : ℝ) + 1) * (multiFactorial J : ℝ) := by
           rw [← he, factorial_add_single]

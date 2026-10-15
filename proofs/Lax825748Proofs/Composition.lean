@@ -1,11 +1,11 @@
 import Lax825748Proofs.WeightedMass
-import Lax208278Proofs.ContinuousDerivations
+import Lax825748Proofs.ContinuousDerivations
 
 noncomputable section
 
 namespace Lax825748Proofs.Composition
 
-open Lax208278.FormalSeries Lax208278.Monomials Lax825748.ConvergentSeries
+open Lax825748.FormalSeries Lax825748.Monomials Lax825748.ConvergentSeries
 open WeightedMass
 open scoped BigOperators
 
@@ -89,7 +89,7 @@ theorem composition {d e : ℕ} (φ : StateSeries d →ₐ[ℝ] StateSeries e)
   obtain ⟨m, hm⟩ := hc (totalDegree I + 1)
   let p := MvPowerSeries.truncTotal m f
   have he := hm f p.toMvPowerSeries
-    (Lax208278Proofs.ContinuousDerivations.trunc_agree f le_rfl) I (Nat.lt_succ_self _)
+    (Lax825748Proofs.ContinuousDerivations.trunc_agree f le_rfl) I (Nat.lt_succ_self _)
   rw [he]
   change weight (φ p.toMvPowerSeries) r I ≤ _
   refine (polynomial_weight_bound φ hr.le hρ.le hb p I).trans ?_

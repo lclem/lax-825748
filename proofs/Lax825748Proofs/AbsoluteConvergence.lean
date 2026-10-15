@@ -5,7 +5,7 @@ noncomputable section
 
 namespace Lax825748Proofs.AbsoluteConvergence
 
-open Lax208278.FormalSeries Lax208278.Monomials Lax825748.ConvergentSeries
+open Lax825748.FormalSeries Lax825748.Monomials Lax825748.ConvergentSeries
 open scoped BigOperators
 
 def splitIndex (d : ℕ) : (Fin (d + 1) → ℕ) ≃ ℕ × (Fin d → ℕ) where

@@ -1,17 +1,17 @@
 import Lax825748.NecessaryConvergence
 import Lax825748Proofs.PowerSeriesBounds
-import Lax208278Proofs.Rank
-import Lax208278Proofs.ContinuousDerivations
-import Lax208278Proofs.MonomialLists
+import Lax825748Proofs.Rank
+import Lax825748Proofs.ContinuousDerivations
+import Lax825748Proofs.MonomialLists
 
 noncomputable section
 
 namespace Lax825748Proofs.NecessaryConvergence
 
-open Lax208278.Series Lax208278.FormalSeries Lax208278.DifferentialRepresentation
-open Lax208278.LieRank Lax208278.Monomials
+open Lax825748.Series Lax825748.FormalSeries Lax825748.DifferentialRepresentation
+open Lax825748.LieRank Lax825748.Monomials
 open Lax825748.ConvergentSeries Lax825748.AnalyticRepresentations
-open Lax208278Proofs Operators MonomialLists
+open Lax825748Proofs Operators MonomialLists
 open PowerSeriesBounds
 open scoped BigOperators
 
@@ -96,7 +96,7 @@ theorem convergence {X : Type} {d : ℕ} (R : Representation X d)
   have he : generatingSeries R' w =
       pairing (generatingSeries R) (orderedPowers (fun j => (P j).val) I) := by
     change MvPowerSeries.constantCoeff (act R' R.output w) =
-      pairing (Lax208278.RepresentationMap.eta R R.output) _
+      pairing (Lax825748.RepresentationMap.eta R R.output) _
     rw [Rank.pairing_operator]
     congr 1
     rw [show R' = (⟨A, R.output⟩ : Representation (Fin q) d) from rfl,

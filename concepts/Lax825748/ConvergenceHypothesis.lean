@@ -1,5 +1,5 @@
-import Lax208278.LieRank
-import Lax208278.Monomials
+import Lax825748.LieRank
+import Lax825748.Monomials
 
 /-!
 ---
@@ -19,7 +19,7 @@ noncomputable section
 
 namespace Lax825748.ConvergenceHypothesis
 
-open Lax208278.Series Lax208278.LieRank Lax208278.Monomials
+open Lax825748.Series Lax825748.LieRank Lax825748.Monomials
 
 def Holds {X : Type} (g : NCSeries X) : Prop :=
   ∀ (q : ℕ) (P : Fin q → LiePolynomial X),

@@ -1,5 +1,5 @@
 import Lax825748.ConvergentSeries
-import Lax208278.DifferentialRepresentation
+import Lax825748.DifferentialRepresentation
 
 /-!
 ---
@@ -22,7 +22,7 @@ noncomputable section
 
 namespace Lax825748.AnalyticRepresentations
 
-open Lax208278.Series Lax208278.DifferentialRepresentation ConvergentSeries
+open Lax825748.Series Lax825748.DifferentialRepresentation ConvergentSeries
 
 def IsAnalytic {X : Type} {d : ℕ} (R : Representation X d) : Prop :=
   Convergent R.output ∧ ∀ x i, Convergent (R.fields x i)

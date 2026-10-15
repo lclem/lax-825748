@@ -1,15 +1,15 @@
 import Lax825748.ResidualConvergence
 import Lax825748Proofs.NecessaryConvergence
-import Lax208278Proofs.Series
+import Lax825748Proofs.Series
 
 noncomputable section
 
 namespace Lax825748Proofs.ResidualConvergence
 
-open Lax208278.Series Lax208278.LieRank Lax208278.Monomials
-open Lax208278.FormalSeries Lax208278.DifferentialRepresentation
+open Lax825748.Series Lax825748.LieRank Lax825748.Monomials
+open Lax825748.FormalSeries Lax825748.DifferentialRepresentation
 open Lax825748.ConvergenceHypothesis
-open Lax208278Proofs
+open Lax825748Proofs
 
 theorem holds_add {X : Type} {g h : NCSeries X} (hg : Holds g) (hh : Holds h) :
     Holds (g + h) := by
@@ -50,12 +50,12 @@ theorem holds_constant {X : Type} (a : ℝ) : Holds (constantSeries a : NCSeries
   have hR : Lax825748.AnalyticRepresentations.IsAnalytic R :=
     ⟨PowerSeriesBounds.convergent_C a, fun _ i => Fin.elim0 i⟩
   have he : generatingSeries R = constantSeries a :=
-    (Lax208278.RepresentationMap.algebra_homomorphism R).1 a
+    (Lax825748.RepresentationMap.algebra_homomorphism R).1 a
   rw [← he]
   exact Lax825748.NecessaryConvergence.convergence R hR
 
 theorem holds_letter_residual {X : Type} (g : NCSeries X) (hg : Holds g) (x : X) :
-    Holds (Lax208278.Series.rightResidual g (letter x)) := by
+    Holds (Lax825748.Series.rightResidual g (letter x)) := by
   intro q P
   let L : LiePolynomial X := ⟨letter x,
     LieSubalgebra.subset_lieSpan (Set.mem_range_self x)⟩
@@ -75,10 +75,10 @@ theorem holds_letter_residual {X : Type} (g : NCSeries X) (hg : Holds g) (x : X)
         pow_add, mul_assoc]
 
 theorem holds_word_residual {X : Type} (g : NCSeries X) (hg : Holds g) (w : Word X) :
-    Holds (Lax208278.Series.rightResidual g (wordPolynomial w)) := by
+    Holds (Lax825748.Series.rightResidual g (wordPolynomial w)) := by
   induction w using FreeMonoid.recOn generalizing g with
   | one =>
-    have he : Lax208278.Series.rightResidual g (wordPolynomial 1) = g := by
+    have he : Lax825748.Series.rightResidual g (wordPolynomial 1) = g := by
       funext v
       simp
     rwa [he]
@@ -94,21 +94,21 @@ Prepend a letter to the tested Lie family, with exponent one. Iteration
 gives word residuals, and linearity gives every polynomial residual.
 -/
 theorem right_residual {X : Type} (g : NCSeries X) (hg : Holds g) (Q : NCPolynomial X) :
-    Holds (Lax208278.Series.rightResidual g Q) := by
+    Holds (Lax825748.Series.rightResidual g Q) := by
   induction Q using MonoidAlgebra.induction_on with
   | of w => exact holds_word_residual g hg w
   | add P Q hP hQ =>
-    have he : Lax208278.Series.rightResidual g (P + Q) =
-        Lax208278.Series.rightResidual g P + Lax208278.Series.rightResidual g Q := by
+    have he : Lax825748.Series.rightResidual g (P + Q) =
+        Lax825748.Series.rightResidual g P + Lax825748.Series.rightResidual g Q := by
       funext w
-      simp [Lax208278.Series.rightResidual, add_mul]
+      simp [Lax825748.Series.rightResidual, add_mul]
     rw [he]
     exact holds_add hP hQ
   | smul a P hP =>
-    have he : Lax208278.Series.rightResidual g (a • P) =
-        a • Lax208278.Series.rightResidual g P := by
+    have he : Lax825748.Series.rightResidual g (a • P) =
+        a • Lax825748.Series.rightResidual g P := by
       funext w
-      simp [Lax208278.Series.rightResidual]
+      simp [Lax825748.Series.rightResidual]
     rw [he]
     exact holds_smul a hP
 
@@ -119,7 +119,7 @@ conclusion: Lax825748.ResidualConvergence.centered_residual
 Subtracting the constant term preserves the convergence condition.
 -/
 theorem centered_residual {X : Type} (g : NCSeries X) (hg : Holds g) (Q : NCPolynomial X) :
-    Holds (Lax208278.Series.rightResidual g Q - constantSeries (pairing g Q)) := by
+    Holds (Lax825748.Series.rightResidual g Q - constantSeries (pairing g Q)) := by
   rw [sub_eq_add_neg, ← neg_one_smul ℝ (constantSeries (pairing g Q))]
   exact holds_add (Lax825748.ResidualConvergence.right_residual g hg Q)
     (holds_smul (-1) (holds_constant _))

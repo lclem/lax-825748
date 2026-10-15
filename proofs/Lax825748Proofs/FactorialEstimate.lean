@@ -5,7 +5,7 @@ noncomputable section
 
 namespace Lax825748Proofs.FactorialEstimate
 
-open Lax208278.Series Lax208278.FormalSeries Lax208278.DifferentialRepresentation
+open Lax825748.Series Lax825748.FormalSeries Lax825748.DifferentialRepresentation
 open Lax825748.ConvergentSeries Lax825748.AnalyticRepresentations Lax825748.FactorialEstimate
 
 /--

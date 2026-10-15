@@ -1,4 +1,4 @@
-import Lax208278.FormalSeries
+import Lax825748.FormalSeries
 
 /-!
 ---
@@ -16,7 +16,7 @@ noncomputable section
 
 namespace Lax825748.ConvergentSeries
 
-open Lax208278.FormalSeries Lax208278.Monomials
+open Lax825748.FormalSeries Lax825748.Monomials
 
 def HasGeometricBound {d : ℕ} (f : StateSeries d) (α C : ℝ) : Prop :=
   ∀ I : Fin d →₀ ℕ, |MvPowerSeries.coeff I f| ≤ α * C ^ totalDegree I

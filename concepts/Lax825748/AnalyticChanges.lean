@@ -1,5 +1,5 @@
 import Lax825748.ConvergentSeries
-import Lax208278.CoordinateChange
+import Lax825748.CoordinateChange
 
 /-!
 ---
@@ -19,7 +19,7 @@ noncomputable section
 
 namespace Lax825748.AnalyticChanges
 
-open Lax208278.FormalSeries Lax208278.CoordinateChange ConvergentSeries
+open Lax825748.FormalSeries Lax825748.CoordinateChange ConvergentSeries
 
 structure AnalyticChange (d : ℕ) extends FormalChange d where
   convergent_toFun : ∀ i, Convergent (toAlgEquiv (MvPowerSeries.X i))
