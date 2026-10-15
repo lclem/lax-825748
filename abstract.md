@@ -17,3 +17,6 @@ The submission includes the real-coefficient algebraic foundation and its
 proofs, so it has no dependencies on other archive submissions. The source
 paper records the three approved corrections to the analytic statements
 and estimates.
+
+The LaTeX sources of the paper were taken from the
+[heuklyd papers collection](https://heuklyd.github.io/papers/).
