@@ -1,0 +1,553 @@
+\documentclass[a4paper,12pt]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[width=15cm,height=22cm]{geometry}
+\usepackage{amsmath,amsfonts,amssymb,amsthm}
+\usepackage{mathrsfs}
+\usepackage[hidelinks,pdfusetitle]{hyperref}
+\usepackage[capitalise]{cleveref}
+\usepackage{bbm}
+\usepackage{xcolor}
+
+\newtheorem{proposition}{Proposition}
+\newtheorem*{theorem*}{Theorem}
+\newtheorem{theorem}[proposition]{Theorem}
+\newtheorem{corollary}[proposition]{Corollary}
+\newtheorem{lemma}{Lemma}
+\newtheorem{definition}{Definition}
+\newtheorem{open}[proposition]{Open problem}
+\newtheorem{remark}[proposition]{Remark}
+\newtheorem*{example*}{Example}
+
+\crefname{equation}{eq.}{eqs.}
+\crefname{section}{Sec.}{Secs.}
+\crefname{theorem}{Th.}{Ths.}
+\crefname{problem}{Pb}{Pbs}
+
+\title{The local realization\\of generating series of finite Lie rank\footnote{M.\ Fliess and M. Hazewinkel (eds.), Algebraic and Geometric Methods in Nonlinear Control Theory, 33-43.}}
+\author{Christophe Reutenauer\texorpdfstring{\thanks{Université du Québec à Montréal and CNRS (Paris), Département de Mathématiques et d'Informatique, C.P.\ 8888 Succ.\ A, H3C 3P8, Canada}~}{}}
+\date{}
+
+\newcommand{\card}{\operatorname{Card}}
+\newcommand{\End}{\operatorname{End}}
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Rx}{\R\langle X\rangle}
+\newcommand{\Lx}{L\langle X\rangle}
+\newcommand{\Rxx}{\R\langle\langle X\rangle\rangle}
+\newcommand{\dd}{\mathrm{d}}
+
+\begin{document}
+
+\maketitle
+
+\begin{quote}\small
+Editorial note. Three corrections are made to the source text: Definition~1
+explicitly requires convergent vector fields; the diagonal coefficient in
+Lemma~5(ii) is $I!=\prod_k i_k!$; and the central binomial bound in
+part~a) is $\binom{2p}{p}\leq 4^p$. The resulting estimate
+$\alpha(2d\alpha C)^p p!$ is unchanged.
+\end{quote}
+
+\section{Introduction}
+
+Realization of nonlinear systems by state-space is a classical problem in control theory. This problem has been completely solved by Kalman \cite{10} in the case of linear systems. Similarly, it was solved for bilinear systems (see Brockett \cite{2}, d'Alessandro, Isidori, Ruberti \cite{1}, Fliess \cite{3}, Sussmann \cite{12}). In the general case, let us mention the work of Sussmann \cite{13}, Hermann, Krener \cite{7} and Jakubczyk \cite{9}: they assume that the solutions are regular at any time and for any inputs. This restriction lead Fliess to study local realization of nonlinear systems \cite{5}.
+
+The present paper deals with the latter subject; there are no new results here, but we give elementary proofs of Fliess' results \cite{5}. He shows that to these systems correspond generating series (which are noncommutative formal power series) which have the property that their Lie rank is finite\footnote{Bilinear systems correspond to generating series whose rank is finite.}. Then he shows existence and unicity of locally reduced (or minimal) realizations and shows that minimality is equivalent to the two following properties: weak local controllability and weak local observability.
+
+We want to give here a simple proof of these results, especially the proof of unicity, for which Fliess uses in \cite{5} sophisticated results on Lie groups and algebras. The present work extends the ``syntactic'' approach of series with finite Lie rank, as studied in \cite{5}, and of nonlinear systems. Hopefully, this will lead to find a realization, which is minimal (in some sense) and which is given directly by the generating series; this would be analogue to the bilinear case, where the minimal state-space is directly given by the Hankel matrix.
+Our main tool here is the theorem of Poincaré-Birkhoff-Witt. We treat only the ``analytic'' case of \cite{5}. The ``formal'' case is simpler and is obtained by omitting in the sequel everything dealing with convergence or majoration of coefficients.
+
+I want to thank Michel Fliess for encouraging and stimulating discussions on this subject.
+
+\section{Generating series of finite Lie rank}
+
+We consider a system of the following form
+\begin{equation} \label{eq:1}
+	\begin{cases}
+		\dot{q}(t)=A_0(q)+\sum_{i=1}^n u_i(t) A_i(q) \\
+		y(t)=h(q)
+	\end{cases}
+\end{equation}
+where the state $q$ belongs to a connected analytic $\R$-variety $Q$, where the $A_i$'s are analytic vector fields and $h$ a real analytic function defined in a neighborhood of the given initial state $q(0)$. The inputs $u_1, \ldots, u_n$ are real and piecewise continuous.
+
+By Fliess \cite{4} th.III.2, the output $y$ of system \eqref{eq:1} is given by the following formula (for small enough time and inputs):
+\begin{equation} \label{eq:2}
+	y(t)=\left.h\right|_{q(0)}+\sum_{\nu \geq 0} \sum_{j_0, \ldots, j_\nu \geq 0}^n\left(\left.A_{j_0} \ldots A_{j_\nu} h\right|_{q(0)}\right) \int_0^t \dd \xi_{j_\nu} \ldots \dd \xi_{j_0}
+\end{equation}
+where $\rvert_q(0)$ means evaluation in $q(0)$ and where the iterated integrals $\int \dd \xi_{j_\nu} \ldots \dd \xi_0$ are defined by the formulas ($u_0$ is the constant function equal to $1$):
+\begin{equation*}
+	\begin{aligned}
+		& \int_0^t \dd \xi_j=\int_0^t u_j(\tau) \dd \tau, \text { and if } \nu \geq 1 \\
+		& \int_0^t \dd \xi_{j_\nu} \ldots \dd \xi_{j_0}=\int_0^t\left[u_{j_\nu}(\tau) \dd  \tau \int_0^\tau \dd \xi_{j_{\nu-1}} \ldots \dd  \xi_{j_0}\right]
+	\end{aligned}
+\end{equation*}
+Actually, the input-output behaviour of system \eqref{eq:1} is completely defined by its \textbf{generating series} (\cite{4} p.12), which is a noncommutative formal power series in the variables $x_0, \ldots, x_n$:
+\begin{equation} \label{eq:3}
+	{g}=\left.{h}\right|_{{q}(0)}+\sum_{\nu \geq 0} \sum_{j_0, \ldots, j_\nu \geq 0}^{{n}}\left({A}_{j_0} \ldots {A}_{j_\nu} {h}\rvert_{{q}(0)}\right) {x}_{{j}_\nu} \ldots {x}_{j_0}
+\end{equation}
+Recall that a formal power series in the noncommutative variables ${x}_0, \ldots, {x}_{{n}}$ is a mapping ${g}$ from the free monoid $X^*$ generated by ${X}=\left\{{x}_0, \ldots x_n\right\}$ into $\R$, denoted by ${w} \rightarrow({g}, {w})$, for any \textbf{word} (= element of $X^*$) ${w}$, including the empty word, denoted by $1$. The formal series $g$ will also be denoted by
+\begin{equation*}
+	g=\sum_{w \in {X}^*}(g, {w}) {w}
+\end{equation*}
+% lax begin Lax825748.ConvergentSeries
+The set of formal series is denoted by $\Rxx$. Following [5], we give a definition, inspired by \eqref{eq:3}. First, let us say that a (commutative) formal series in $\R[[q]]=\R[[q_1, \ldots, q_d]]$ (where the $q_i$'s are commutative variables) is \textbf{convergent} if it converges in a neighborhood of $0$; similarly, we say that a \textbf{formal vector field}, that is, an operator of $\R[[q]]$ of the form\footnote{A formal vector field may also be defined as a derivation of the algebra $\R[[q]]$, which is continuous for the usual topology of $\R[[q]]$.}
+\begin{equation*}
+	A=\sum_{1 \leq k \leq d} \theta_k\left(q_1, \ldots, q_d\right) \frac{\partial}{\partial q_k}
+\end{equation*}
+where the $\theta_{{k}}$ are in $\R[[{q}]]$, is \textbf{convergent}, if the $\theta_{k}$'s are convergent formal series. Because of the reverse order in \eqref{eq:3} of the $A$'s and the $x$'s, we let the formal vector fields operate at the right of the formal series.
+
+% lax end
+
+% lax begin Lax825748.AnalyticRepresentations
+\begin{definition}
+	A formal series $g \in \Rxx$ is \textbf{produced differentially} if there exists an integer $d$, an homomorphism $\mu$ from the free monoid into the multiplicative monoid of the endomorphisms of $\R[[q]]$ such that $\mu {x}$ is a convergent formal vector field for any $x$ in $X$, a convergent formal series $h$ in $\R[[q]]$ such that
+	\begin{equation*}
+		\forall w \in X^*, \quad (g, w)=\left.h(\mu w)\right|_0
+	\end{equation*}
+	(that is, $({g}, {w})$ is the constant term of the series which is the image of ${h}$ under the operator $\mu w$).
+	
+	We call the couple $(\mu, h)$ a \textbf{differential representation} of $g$, of \textbf{dimension}~$d$.
+\end{definition}
+
+% lax end
+
+It is now obvious that if ${g}$ is the generating series of system \eqref{eq:1}, then it is produced differentially (take local coordinates around ${q}(0)$ in \eqref{eq:3}). Conversely, if a series ${g}$ is produced differentially, then one may associate to it a system of type \eqref{eq:1}, whose generating series is ${g}$. Thus, \textbf{the study of differential representations of series is equivalent to the study of local realizations of systems like \eqref{eq:1}}.
+
+% Formal foundation begin Lax208278.Series
+Before stating the main result, we need some notations. Denote by $\Rx$ the set of noncommutative \textbf{polynomials}, that is, formal series having only a finite number of nonzero coefficients. Then $\Rxx$ is isomorphic to the dual of $\Rx$ (because $\Rx \simeq \R^{(X^*)}$ and $\Rxx \simeq \R^{X^*}$, as vector spaces), with duality
+\begin{equation*}
+	\begin{aligned}
+		& \Rxx \times \Rx \to \R \\
+		& (S, P) \mapsto (S, P)=\sum_{w \in X^*} (S, w) (P, w)
+	\end{aligned}
+\end{equation*}
+The set $\Rx$ possesses an associative product, which extends linearly the concatenation of words in $X^*$. Thus, the algebra $\Rx$ acts naturally at the left and at the right of $\Rxx$, in the following way
+\begin{equation} \label{eq:4}
+	\begin{aligned}
+		& S \circ P=\sum_{w \in X^*}(S, P w) w \\
+		& P \circ S=\sum_{w \in X^*}(S, w P) w
+	\end{aligned}
+\end{equation}
+These two actions are associative (that is, $S \circ P Q=(S \circ P) \circ Q$ and ${PQ} \circ {S}={P} \circ({Q} \circ {S}))$ and commute each to another (that is ${P} \circ({S} \circ {Q})=({P} \circ {S}) \circ {Q})$. 
+
+% Formal foundation end
+
+% Formal foundation begin Lax208278.LieRank
+We denote by $\Lx$ the Lie algebra generated by the elements of ${X}$: an element of $\Lx$ is called a  \textbf{Lie polynomial}.
+
+\begin{definition}
+	The \textbf{Lie rank} of a formal series $g \in \Rxx$ is the dimension of the vector space
+	\begin{equation*}
+		\{P \circ g \mid P \in \Lx \}
+	\end{equation*}
+% Formal foundation end
+% lax begin Lax825748.ConvergenceHypothesis
+	We say that a formal series $g \in \Rxx$ satisfies to the \textbf{convergence hypothesis} \eqref{eq:C} if: for any Lie polynomials ${P}_1, \ldots, {P}_{{q}}$, there exist constants $\alpha$ and ${C}$ such that
+	\begin{equation}
+		\tag{C} \label{eq:C}
+		\forall i_1, \ldots, i_{{q}} \in \N, \quad \left|\left({g}, {P}_1^{i_1} \ldots {P}_{{q}}^{i_{{q}}}\right)\right| \leq \alpha {C}^{i_1+\ldots+i_{{q}}} {i}_{1} ! \ldots i_q!
+	\end{equation}
+	Note that one may replace $i_{1} ! \ldots i_{q} !$ by $\left(i_1+\ldots+i_q\right) !$, because these numbers satisfy to
+	\begin{equation*}
+		i_{1} ! \ldots i_{q} ! \leq\left(i_1+\ldots+i_q\right) ! \leq q^{i_1+\ldots+i_q} i_{1} ! \ldots i_q!
+	\end{equation*}
+\end{definition}
+
+% lax end
+
+Now, we can state the following fundamental result. 
+
+% lax begin Lax825748.Realization
+\begin{theorem*}[Fliess \cite{5}]
+	A series ${g} \in \Rxx$ is differentially produced if and only if its Lie rank is finite and if it satisfies to the convergence hypothesis.
+% lax begin Lax825748.Minimality
+In this case, its Lie rank $d$ is equal to the smallest dimension of all its differential representations. 
+% lax end
+% lax begin Lax825748.Uniqueness
+	If $(\mu, h)$ and $\left(\mu', h'\right)$ are two differential representations of dimension ${d}$ of ${g}$ (with the same $\R[[{q}]]$), then there exists a continuous and convergent\footnote{that is, for any $q_i$, $\phi\left(q_i\right)$ is convergent and without constant term.} automorphism of $\R[[q]]$ such that ${h}'=\phi({h})$ and $\phi({k} \mu {w})=\phi({k}) \mu^{\prime} {w}$ for any word w and any series ${k}$ in $\R[[q]]$.
+\end{theorem*}
+
+% lax end
+% lax end
+
+Note that the fact that $\phi$ is bijection is equivalent to the well-known Jacobian condition
+\begin{equation*}
+	\left|\frac{\partial \phi\left(q_j\right)}{\partial q_i}(0)\right| \neq 0
+\end{equation*}
+
+The third part of this paper is devoted to the proof of the theorem. We need before some definition and results.
+
+% Formal foundation begin Lax208278.Shuffle
+On $\Rxx$ is defined another product, the \textbf{shuffle}, which is associative and commutative and which will be important in the sequel; this is not a surprise, as the shuffle intervenes already for systems of the form \eqref{eq:1}: indeed, by Fliess (\cite{4} prop. II.4), if two systems admit the generating series ${g}_1$ and ${g}_2$, then the system whose output is the product of the outputs of these two systems admits as generating series the shuffle of ${g}_1$ and ${g}_2$.
+
+If $w$ is a word of length $|w|=p$ ($w=y_1 \ldots y_p$, $y_i \in X$) and $I \subset \{1, \ldots, p\}$, denote by $w|I$ the word $y_{i_1} \ldots y_{i_r}$, with $I=\left\{i_1<\ldots<i_r\right\}$. Then the shuffle $u \star v$ of two words $u$ and $v$ is defined as
+\begin{equation*}
+	u \star v= \sum w(I, J)
+\end{equation*}
+where the sum is extended to all partitions $(I, J)$ of $(1, \ldots,|u|+|v|)$ with $\card(I)=|u|$, $\card(J)=|v|$ and where the word $w(I, J)$, of length $|u|+|v|$, is defined by
+\begin{equation*}
+	w(I, J)|I=u, \quad w(I, J)| J=v
+\end{equation*}
+Note that there are ${|u|+|v|}\choose{|u|}$ such words.
+
+\begin{example*}
+	${y}_1 {y}_2 \star {y}_2 {y}_3=2 {y}_1 {y}_2^2 {y}_3+{y}_1 {y}_2 {y}_3 {y}_2+{y}_2 {y}_1 {y}_2 {y}_3+{y}_2 {y}_1 {y}_3 {y}_2$ $+{y}_2 {y}_3 {y}_1 {y}_2$. 
+\end{example*}	
+	
+The shuffle $S \star T$ of two series in $\Rxx$ is then defined by
+\begin{equation*}
+	S \star T =\sum_{{u}, {v} \in {X}^*}(S, {u})({T}, {v}) {u} \star {v}
+\end{equation*}
+(extension by linearity and continuity). \textbf{From now on, we denote $S \star T$ simply by ${S} {T}$}: there will be no ambiguity because we consider here only the shuffle structure of $\Rxx$\footnote{$\Rxx$ possesses also the noncommutative product which extends the concatenation of words.}. However, $\Rx$ will be considered with its concatenation structure.
+
+% Formal foundation end
+
+% Formal foundation begin Lax208278.ShuffleIdentities
+\begin{lemma} \label{l:1}
+	Let $c_p: \Rx \to \Rx^{\otimes p}$ be the concatenation homomorphism defined by
+	\begin{equation*}
+		c_p(x)= x \otimes 1 \dotsb \otimes 1 + 1 \otimes x \dotsb \otimes 1 + 1 \otimes 1 \dotsb \otimes x
+	\end{equation*}
+	For any series $S_1, \ldots, S_p$ in $\Rxx$ and any polynomial $P$ one has
+	\begin{equation*}
+		\left({S}_1 \dotsb {S}_{{P}}, {P}\right)=\left({S}_1 \otimes \dotsb \otimes {S}_{{p}}, {c}_{{p}}({P})\right)
+	\end{equation*}
+	where the duality between $\Rxx$ and $\Rx$ is extended to $\Rxx^{\otimes p}$ and $\Rx^{\otimes p}$, that is
+	\begin{equation*}
+		\left(S_1 \otimes \dotsb \otimes S_p, {P}_1 \otimes \dotsb \otimes {P}_{{p}}\right)=\left(S_1, {P}_1\right) \ldots\left(S_p, P_p\right)
+	\end{equation*}
+\end{lemma}
+
+\begin{proof}
+	It is enough to prove the lemma when the $S$'s and the $P$'s are words; in this case, it is a simple consequence of the definition of the shuffle.
+\end{proof}
+
+
+\begin{lemma} \label{l:2}
+	If $P$ is a Lie polynomial, then
+	\begin{equation*}
+		c_p(P) = P \otimes 1 \dotsb \otimes 1 + 1 \otimes P \dotsb \otimes 1 + 1 \otimes 1 \dotsb \otimes P
+	\end{equation*}
+\end{lemma}
+
+\begin{proof}
+	This is true if $P=x \in X$. Moreover, if it is true for $P$ and $Q$, then also for $[P, Q]=P Q-Q P$, as is easily verified. So, the lemma follows.
+\end{proof}
+
+% Formal foundation end
+
+We shall use the following classical result.
+
+% Formal foundation begin Lax208278.PBW
+\begin{theorem*}[Poincaré-Birkhoff-Witt]
+	Let $P_1, \ldots, P_n, \ldots$ be a basis of $\Lx$. Then the polynomials
+	\begin{equation*}
+		P_{i_1}^{j_1} \ldots P_{i_r}^{j_r}, 
+		\quad r \geq 0, \quad i_1, \ldots, i_r, j_1, \ldots, j_r \geq 1, 
+		\quad i_1<\ldots < i_r
+	\end{equation*}
+	form a basis of $\Rx$.
+\end{theorem*}
+
+% Formal foundation end
+
+For a proof, see \cite{8}, corollary C p.\ 92.
+
+\section{Proof of theorem}
+
+\textbf{a)} Let $g$ be a series having the differential representation $(\mu,g)$ of dimension $d$. We show that the Lie rank of $g$ is $\leq d$ and that $g$ satisfies \eqref{eq:C}. For the first assertion, we do as in \cite{5} II.a. Let $T_i$ ($1 \leq i \leq d$) be the series
+\begin{equation*}
+	{T}_{{i}}=\left.\sum_{{w}} \frac{\partial({h} \mu {w})}{\partial {q}_{{i}}}\right|_{0} {w}
+\end{equation*}
+Let ${P}$ be a Lie element. We extend $\mu: X^* \to \End(\R[[q]])$ to an algebra homomorphism from $\Rx$ into $\End(\R[[q]])$. Then $\mu(P)$ is a continuous derivation (because derivations form a Lie algebra) of $\R[[q]]$, hence
+\begin{equation*}
+	\begin{split}
+		(P \circ S, w)&=(S, w P)=\left.h \mu(w P)\right|_0=\left.(h \mu w) \mu P\right|_0 \\
+		& =\left.\left[\sum_{1 \leq i \leq d} \frac{\partial(h \mu w)}{\partial q_i}\left(q_i \mu P\right)\right]\right|_0=\left.\sum_i\left(T_i, w\right)\left(q_i \mu P\right)\right|_0
+	\end{split}
+\end{equation*}
+Thus ${P} \circ {S}=\left.\sum_i\left({q}_i \mu {P}\right)\right|_{0} {T}_i$ is a linear combination of ${T}_1, \ldots, {T}_{{d}}$.
+
+% lax begin Lax825748.FactorialEstimate
+We show now that $g$ satisfies to \eqref{eq:C}\footnote{We follow Gröbner \cite{6}, chap.\ 1.}. By assumption, the series $h$ and $q_i \mu x_j$ ($1 \leq i \leq d$, $0 \leq j \leq n$) are convergent in a neighborhood of $0$. We thus may find constants $\alpha$ and $C$ such these series are all bounded by the same series
+\begin{equation*}
+	f=\alpha \sum_r C^r q^r=\alpha(1-C q)^{-1}
+\end{equation*}
+in the sense that the coefficient of $q_1^{i_1} \ldots q_d^{i_d}$ is bounded by $\alpha C^{i_1 + \dotsb + i_d}$.
+It is then easily shown that $h\mu w$ ($w$ of length $p$) is bounded by the series $f \Delta^p$, where $\Delta$ is the differential operator
+\begin{equation*}
+	\Delta={d} \frac{\alpha}{1-{Cq}} \frac{\partial}{\partial {q}}
+\end{equation*}
+A simple computation shows that
+\begin{equation*}
+	f \Delta^p=\frac{\alpha(d \alpha C)^p 1 \cdot 3 \dotsb (2 p-1)}{(1-C q)^{2 p+1}}
+\end{equation*}
+Hence, we obtain
+\begin{equation*}
+	|(g, w)|=\left|h \mu w \rvert_0\right| \leq f \Delta^p\rvert_0
+	=\frac{\alpha(d \alpha C)^p(2 p) !}{2^p p !}
+\end{equation*}
+As ${2p}\choose{p}$ is bounded by $4^{{p}}$, we obtain
+\begin{equation*}
+	|(g, w)| \leq \alpha(2 d\alpha {C})^{{p}} {p}!
+\end{equation*}
+% lax end
+
+% lax begin Lax825748.NecessaryConvergence
+Now let ${P}_1, \ldots, P_q$ be Lie polynomials, ${y}_1, \ldots, {y}_{{q}}$ new letters and $g' \in \R\langle\langle{y}_1, \ldots, {y}_{{q}}\rangle\rangle$ the series having the differential representation $(\mu',h)$ with $\mu' {y}_i=\mu {P}_i$. The previous paragraph implies that if $w$ is a word of length ${p}$ in the $y$'s, then one has an inequality of the form
+\begin{equation*}
+	\left|(g', w)\right| \leq \beta D^p p !
+\end{equation*}
+which proves \eqref{eq:C}, in view of the remark following the definition of \eqref{eq:C}.
+
+\bigskip
+
+% lax end
+
+\textbf{b)} We come now to the converse, which is the essential part of the theorem. Let $g$ be a series of Lie rank $d$ and which satisfies to the convergence hypothesis.
+
+Let ${L}_0=\{{P} \in \Lx \mid {P} \circ {g}=0\}$. By assumption, ${L}_0$ is of finite codimension~$d$ in $\Lx$. Moreover, it is a sub-Lie-algebra of $\Lx$.
+Let $P_1, \ldots, P_n, \ldots$ be a basis of $\Lx$ such that $P_{d+1}, \ldots, P_n, \ldots$ is a basis of $L_0$. 
+Let $S_1, \ldots, S_d$ the series defined by $\left(S_i, P_j\right)=\delta_{i, j}$ and $\left(S_i, P_{i_1}^{j_1} \ldots P_{i_r}^{j_r}\right)=0$ if $r=0$ or if $j_1+\ldots+j_r \geq 2$ (use the P-B-W theorem). Then
+\begin{equation} \label{eq:3.1} \tag{1}
+	g=\sum_{i_1, \ldots, i_d \geq 0} \frac{\left(g, P_1^{i_1} \ldots P_d^{i_d}\right)}{i_{1} ! \ldots i_{d} !} S_1^{i_1} \ldots S_d^{i_d}
+\end{equation}
+Note that the $S_i$'s have zero constant term, which ensures that the sum is well-defined.
+In fact, we shall prove a more general result.
+
+% Formal foundation begin Lax208278.Annihilator
+\begin{proposition} \label{p:1}
+	Let ${L}_0$ be a sub-Lie-algebra of $\Lx$ of codimension ${d}$. Let ${P}_1, \ldots, {P}_{{d}}$ be a basis of $\Lx$ modulo $L_0$ and $S_1, \dotsc, S_d$ series without constant term such that $\left(S_i, P_j\right)=\delta_{i, j}$ and which vanish on the left ideal ${J}=\Rx L_0$. Then
+	\begin{equation*}
+		J^\perp =\{{S} \mid({S}, {P})=0,  \forall {P} \in {J}\}=\R \left[\left[{S}_1, \ldots, {S}_{{d}}\right]\right]
+	\end{equation*}
+	Moreover, any $S \in \R\left[\left[S_1, \ldots, S_d\right]\right]$ has a unique expression as series in the $S_i$'s.
+\end{proposition}
+
+\begin{proof}
+	\textbf{1)} We show that $J^\perp$ contains $\R[[S_1,\dotsc,S_d]]$.
+	As $J^\perp$ is closed for the usual topology of $\Rxx$ and closed for the operation $T \rightarrow T \circ P$ ($P \in \Rx$), because $J$ is a left ideal, it is enough to show that it is also closed for the shuffle. Let ${S}, {T}$ in ${J}^{\perp}$ : it suffices to show that $({ST}) \circ w$ vanishes on ${L}_0$ for any word ${w}$ (it will imply that ${ST}$ vanishes on ${X}^* L_0$, hence on ${J}$).
+	
+	\begin{lemma} \label{l:3}
+		$T \rightarrow T \circ x$ is a derivation for the shuffle.
+	\end{lemma}
+
+	By the lemma (which is well-known), $({ST}) \circ {w}$ is a linear combination of series of the form $(S \circ u)(T \circ v)$. As $S, T$ vanish on $J$, we obtain that $S\circ u$, $T\circ v$ vanish on ${L}_0$.
+	
+	\begin{lemma} \label{l:4}
+		Let $i > j$, $T_1, \ldots, T_i$ series without constant term and $Q_1, \ldots, Q_j$ be	Lie polynomials. Then
+		\begin{equation*}
+			\left(T_1 \ldots T_i, Q_1 \ldots Q_j\right)=0
+		\end{equation*}
+	\end{lemma}
+
+	\begin{proof}
+		The lemma follows from \cref{l:1,l:2}: write that $\left({T}_1 \ldots {T}_i,Q_1 \ldots Q_j\right)=\left(T_1 \otimes \ldots \otimes T_i, c_i\left(Q_1 \ldots Q_j\right)\right)$ and note that $c_i\left(Q_1 \ldots Q_j\right)$, which is the product from $1$ to $j$ of
+		\begin{equation*}
+			{Q}_{\ell} \otimes 1 \ldots \otimes 1+1 \otimes {Q}_{\ell} \ldots \otimes 1+1 \otimes 1 \ldots \otimes {Q}_{\ell}
+		\end{equation*}
+		is a sum of tensors each of which has a 1 as factor; as $\left(T_k, 1\right)=0$, we obtain \cref{l:4}.
+	\end{proof}
+
+	By this lemma, the shuffle of two series which vanish on ${L}_0$ is still vanishing on ${L}_0$. Hence each $({S} \circ {u})({T} \circ {v})$ vanishes on ${L}_0$, and so does also $(ST) \circ w$.
+	
+	\bigskip	
+	
+	\textbf{2)} We prove that $J^{\perp} \subset \R\left[\left[S_1, \ldots, S_d\right]\right]$. Let $S \in J^{\perp}$. We have to find coefficients $a_{i_1, \ldots, i_d}$ such that
+	\begin{equation*} \label{eq:3.2} \tag{2}
+		S=\sum_{i_1, \ldots, i_d} a_{i_1, \ldots, i_d} S_1^{i_1} \ldots S_d^{i_d}
+	\end{equation*}
+	For $I=\left(i_1, \ldots, i_d\right)$, let $a(I)=a_{i_1, \ldots, i_d}$, $S(I)=S_1^{i_1} \ldots S_d^{i_d}$, $P(I)={P}_1^{i_1} \ldots {P}_{{d}}^{i_{{d}}}$, $|I|=i_1+\ldots+i_{{d}}$ and $I !=i_{1} ! \ldots i_d!$. By the P-B-W theorem, we have to show that both sides of \eqref{eq:3.2} have the same value on any polynomial of the form
+	\begin{equation*}
+		{P}_1^{i_1} \ldots {P}_{{r}}^{{i}_{{r}}}, \quad {r} \geq 0, \quad 1 \leq {i}_1<\ldots<{i}_{{r}}, \quad 1 \leq j_1, \ldots j_{{r}}
+	\end{equation*}
+	But, if ${r}>{d}$, then this polynomial is in ${J}$, hence both sides map it to zero. Hence, we have to find coefficients $a(I)$ such that
+	\begin{equation} \label{eq:3.3} \tag{3}
+		\forall {J}, \quad ({S}, {P}({J}))=\sum_{{I}} {a}({I})({S}({I}), {P}({J}))
+	\end{equation}
+
+	\begin{lemma} \label{l:5}
+		(i) If $|I|>|J|$ or if $|I|=|J|$ and $I \neq J$, then $(S(I), P(J))=0$ \\
+		(ii) $(S(I),P(I))=I!$
+	\end{lemma}
+	
+	\begin{proof}
+		If $|I|>|J|$, use \cref{l:4}. Otherwise, use \cref{l:1,l:2} to prove that
+		\begin{equation*}
+			\left(T_1 \ldots T_n, Q_1 \cdots Q_n\right)=\sum_{\sigma \in \mathfrak{S}_n}\left(T_1, Q_{\sigma(1)}\right) \ldots\left(T_n, Q_{\sigma(n)}\right)
+		\end{equation*}
+		which is true for any series ${T}_i$ without constant term and any Lie poIynomials ${Q}_j$.
+	\end{proof}
+
+	\cref{l:5} shows that \eqref{eq:3.3} is a triangular system of linear equations in the $a$'s, with $I!$ on the diagonal. Hence, it admits one and only one solution, which proves the proposition.
+\end{proof}
+
+% Formal foundation end
+
+\eqref{eq:3.1} is proved by using the fact that in this case one has: $|I|<|J|$ implies $(S(I), P(J))=0$ (use \cref{l:1,l:2}).
+
+\eqref{eq:3.1} gives almost the differential representation of $g$. Indeed, $g$ is given in \eqref{eq:3.1} as a commutative series in $S_1, \ldots, S_d$, and by \cref{p:1}, $\R \left[\left[{S}_1, \ldots, {S}_{{d}}\right]\right]$ is isomorphic to an algebra of commutative formal power series in $d$ variables. We have to define $\mu$ and $h$. 
+We let ${h}={g}$ and define $\mu w$ ($w \in {X}^*$) as ${T} \rightarrow {T} \circ {w}$.
+
+By \cref{l:3}, $\mu {x}$ is a continuous derivation, which maps $\R[[S_1,\dotsc,S_d]]$ into itself (by the proposition). Moreover
+\begin{equation*}
+	({g}, {w})=({g} \circ {w}, 1)=({h} \mu {w}, 1)
+\end{equation*}
+and the constant term of ${h} \mu w$ is also the constant term of ${h} \mu {{w}}$ when expressed as a series in the ${S}_i$'s (because the latter are without constant term).
+We still have to show that the operators $\mu {x}$ are convergent. The series $P_1 \circ {g}, \ldots, P_d \circ {g}$ being linearly independent, we may find polynomials $Q_1, \ldots, Q_d$ such that
+\begin{equation*}
+	\left(P_i \circ g, Q_j\right)=\delta_{i, j}
+\end{equation*}
+Let ${T}_1, \ldots, {T}_{{d}}$ be defined by
+\begin{equation*} \label{eq:3.4} \tag{4}
+	T_i=g \circ Q_i-\left(g, Q_i\right)
+\end{equation*}
+The $T_i$'s are without constant term, vanish on $J$ and we have
+\begin{equation*}
+	\left(T_i, P_j\right)=\left(g \circ Q_i, P_j\right)=\left(g, Q_i P_j\right)=\left(P_j \circ g, Q_i\right)=\delta_{j, i}
+\end{equation*}
+Hence by the proposition
+\begin{equation*}
+	\R\left[\left[{T}_1, \ldots, {T}_{{d}}\right]\right]={J}^{\perp}=\R\left[\left[{S}_1, \ldots, {S}_{{d}}\right]\right]
+\end{equation*}
+% lax begin Lax825748.PBWConvergence
+As for $g$, we have relations of the form
+\begin{equation*} \label{eq:3.5} \tag{5}
+	T_j=\sum_I \frac{\left(T_j, P(I)\right)}{I !} S(I)
+\end{equation*}
+% lax begin Lax825748.ResidualConvergence
+Moreover by \eqref{eq:3.4}, the ${T}_{{j}}$'s satisfy to the convergence hypothesis.
+% lax end
+Thus, by \eqref{eq:3.5}, the $T_j$'s may be written as convergent series in the $S_i$'s.
+% lax end
+We use now the following classical result.
+
+% lax begin Lax825748.AnalyticChanges
+\begin{theorem*}[of implicit functions]
+	Let $t_1, \ldots, t_d$ convergent series in $\R\left[\left[s_1, \ldots, s_d\right]\right]$ without constant term and such that $\R[[s]]=\R[[t]]$. Then each $s_i$ may be written as a convergent series in $t_1, \ldots, t_d$.
+\end{theorem*}
+
+% lax end
+
+% lax begin Lax825748.AnalyticCoordinates
+By this theorem, each $S_i$ is a convergent series in ${T}_1, \ldots, T_d$. As previously, the series
+\begin{equation*}
+	T_j \mu x=T_j \circ x
+\end{equation*}
+satisfy to \eqref{eq:C} and are thus convergent series in the $S_i$'s; hence, they are also convergent series when expressed as series in the ${T}_i$'s. All this shows that $(\mu, {h})$ is a differential representation of ${g}$.
+
+\bigskip
+
+% lax end
+
+\textbf{c)} Now, let $g$ be a series of Lie rank $d$ and $(\mu, h)$ be a differential representation of dimension $d$ of $g$. We use the notations of paragraph b).
+
+% Formal foundation begin Lax208278.RepresentationMap
+\begin{lemma} \label{l:6}
+	The mapping $\eta: \R[[{q}]] \rightarrow \Rxx$ which maps ${k}$ onto $\sum_{{w}}\left(\left.{k} \mu {w}\right|_0\right) {w}$ is a
+	continuous homomorphism (for the shuffle), such that for any word w one has $\eta(k \mu w)=\eta(k) \circ w$.
+\end{lemma}
+
+\begin{proof}
+	This lemma is a simple consequence of \cite{4} prop.\ III.\ 1.
+\end{proof}
+
+% Formal foundation end
+
+% Formal foundation begin Lax208278.Projection
+\begin{lemma} \label{l:7}
+	The mapping $\theta: \Rxx \to \Rxx$ which maps $S$ onto $\sum_I \frac{(S, P(I))}{I !} S(I)$
+	is a continuous shuffle homomorphism.
+\end{lemma}
+
+\begin{proof}
+	In order to prove this lemma, note that if $S_1, \ldots, S_n, \ldots$ are the series which are the elements of the dual basis of the P-B-W basis constructed on $P_1, \ldots, P_n, \ldots$, which correspond to $P_1, \ldots, P_n, \ldots$ then $\Rxx =\R [[S_1, \ldots, S_n, \ldots]]$ and the mapping of \cref{l:7} is just a projection: $S_1 \rightarrow S_1, \ldots, S_{{d}} \rightarrow S_{{d}}, S_{{n}} \rightarrow 0$ if ${n}>{d}$.
+\end{proof}
+
+% Formal foundation end
+
+By \cref{l:6}, $\eta(\R[[q]])$ contains $g=\eta(h)$ and is closed for the operations ${T} \rightarrow {T} \circ {w}$. 
+Hence, it contains the ${T}_i$'s defined by \eqref{eq:3.4}, hence also $\R[[T_i]]=\R[[S_i]]$.
+As the restriction of $\theta$ to ${R}\left[\left[{S}_i\right]\right]$ is the identity, the mapping $\phi=\theta \circ \eta: \R[[q]] \to \R[[S_i]]$ is surjective. 
+As it is a continuous homomorphism from an algebra of formal power series in $d$ commutative variables into another, $\phi$ is also injective.
+We deduce that $\eta$ is also a bijection $\R[[q]] \to \R[[S_i]]$ : first, $\eta$ is injective (otherwise $\phi=\theta \circ \eta$ is not); moreover we may find series $k_1, \ldots, k_d$ in $\R[[q]]$ such that $q_i \to k_i$ is a continuous automorphism of $\R[[q]]$ and such that $\phi\left(k_i\right)=S_i$. 
+As $\eta(R[[q]])$ contains $\R[[S_i]]$ and $\R[[q]]=\R[[k_i]]$, we have that $S_i$ is a series in the $\eta\left(k_i\right)$'s: $S_i = s(\eta(k_1), \dotsc, \eta(k_d))$.
+
+Apply $\theta$ : then $S_i=\theta\left(S_i\right)=s\left(S_1, \ldots, S_d\right)$, which shows that $s$ has only the term $S_i$, hence $S_i=\eta\left(k_i\right)$. This shows that $\eta(\R[[q]])= \eta(\R[[k_i]]) = \R[[\eta(k_i)]] = \R[[S_i]]$ and $\eta$ is a bijection as claimed.
+
+We still have to prove the assertions about convergence (we have already seen that any differential representation of dimension ${d}$ of ${g}$ is isomorphic to the one defined by $S_1, \ldots, S_d$). 
+By assumption, the series $g$ and the operators $T \rightarrow T \circ x$ of $\R[[S_i]]$ are convergent when expressed as series in the $\eta\left({q}_i\right)$'s (as $h$ and $\mu x$ are convergent, when expressed in the $q_i$'s). 
+Hence the series $T_i$ of \eqref{eq:3.4} are convergent in the $\eta(q_i)$'s. 
+Hence $\eta$ is a convergent isomorphism from $\R[[q]]$ onto $\R[[T_i]]$.
+This ends the proof of the theorem.
+
+\color{black}
+
+\begin{thebibliography}{99}
+	\bibitem{1}
+	P.~{d'Alessandro}, A.~Isidori, A.~Ruberti:
+	Realization and structure theory of bilinear systems,
+	Siam J.~Control 12 (1974) 517-535.
+	
+	\bibitem{2}
+	R.W.~{Brockett}:
+	On the algebraic structure of bilinear systems, 
+	In: Theory and Application of Variable Structure Systems (Mohler, Ruberti, ed.), Acad.~Press (1972) 153-168.
+	
+	\bibitem{3}
+	M.~Fliess:
+	Sur la réalisation des systèmes dynamiques bilinéaires, 
+	C.R.\ Acad.\ Sci.\ Paris A 277 (1973) 923-926.
+	
+	\bibitem{4}
+	M.~Fliess:
+	Fonctionnelles causales non linéaires et indéterminées non commutatives,
+	Bull.~Soc.~Math.~France 109 (1981) 3-40.
+	
+	\bibitem{5}
+	M.~Fliess:
+	Réalisation locale des systèmes non linéaires, algèbres de Lie filtrées transitives et séries génératrices non commutatives,
+	Invent.\ Math.\ 71 (1983) 521-537.
+	
+	\bibitem{6}
+	W.~Gröbner: 
+	Die Lie Reihen und ihre Anwendungen, 
+	Berlin, VEB Deutscher Verlag der Wissenschaften (1967).
+	
+	\bibitem{7}
+	R.~Hermann, A.J.~Krener: 
+	Nonlinear controllability and observability,
+	IEEE Trans.\ Automat.\ Control 22 (1977) 728-740.
+	
+	\bibitem{8}
+	J.E.\ Humphreys:
+	Introduction to Lie algebras and representation theory,
+	Springer Verlag (1980).
+	
+	\bibitem{9}
+	B.~Jakubczyk:
+	Existence and uniqueness of realizations of nonlinear systems,
+	SIAM J.\ Control Optimiz 18 (1980) 455-471.
+	
+	\bibitem{10}
+	R.E.~Kalman: Mathematical description of linear dynamical systems,
+	SIAM J.\ Control 1 (1963) 152-162.
+	
+	\bibitem{11}
+	M.\ Lothaire,
+	Combinatorics on words,
+	Addison Wesley (1983).
+	
+	\bibitem{12}
+	H.J.\ Sussmann:
+	Minimal realizations and canonical forms for bilinear systems,
+	J.\ Franklin Inst.\ 301 (1976) 593-604.
+	
+	\bibitem{13}
+	H.J.\ Sussmann:
+	Existence and uniqueness of minimal realizations of nonlinear systems,
+	Math.\ Systems Theory 10 (1977) 263-284.
+\end{thebibliography}
+
+\end{document}

@@ -1,0 +1,16 @@
+{
+  "concepts/Lax825748/AnalyticCalculus.lean": "70a24361c17f166c2352bca0a9d5f2d0b990fc09fbcc39dc5af13edcb184a28a",
+  "concepts/Lax825748/AnalyticChanges.lean": "937e9b3ddaeec2d132bea29d4f54f231276c6f75bd6cb22150fe594973d7540d",
+  "concepts/Lax825748/AnalyticCoordinates.lean": "ea211f8096354fd7031783aed823a9410d6d356650316914d96d58efb5bbf448",
+  "concepts/Lax825748/AnalyticRepresentations.lean": "fd99f4002ac68e981c93225a6509936451ac32281f2e0d81ee921c67205698a5",
+  "concepts/Lax825748/ConvergenceHypothesis.lean": "003bf254708985953db92b689b00a8733e90a255dc94b6bb66eaaaa0f943d480",
+  "concepts/Lax825748/ConvergentSeries.lean": "d11a533ef0f52fe4f61a4c1d4b5fa0cd2c42db83db3dffe4428c03e0be5bba3b",
+  "concepts/Lax825748/FactorialEstimate.lean": "30c7d6b0ca0fe61895d2fc6f9c23040d15d82db925a454b91370b80b7b0ea131",
+  "concepts/Lax825748/Minimality.lean": "f519a8ff4379e9ebb9989c5075bfc7add1d870023da0ae29fd320c097a560724",
+  "concepts/Lax825748/NecessaryConvergence.lean": "43258103eab2ab38937fe0c392a1baf62753748e246a20c5cfa5652a1d54c320",
+  "concepts/Lax825748/PBWConvergence.lean": "1f40ac25c6e884cfe7acb75edbd90c83e51f0352f13586eaf8b29a9c8c803ab9",
+  "concepts/Lax825748/Realization.lean": "4380b6c36b2c221ba5c0c7480aa932f1dfb22a7b3f782c86204234ba7a60ae0c",
+  "concepts/Lax825748/ResidualConvergence.lean": "b616e9ca60787e6bc172fbb907b9260eb10cb6d00994bf8b2cba0e012e7033f4",
+  "concepts/Lax825748/Uniqueness.lean": "26458bd565b5c2c6cc115931ff259890c28034b8174c33641b7250dca46225dc",
+  "concepts/Lax825748.lean": "b8e369218616d5f3262ae76d2a2ecdbf078117d172420b6056114f15071a50c1"
+}

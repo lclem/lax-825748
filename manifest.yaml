@@ -1,0 +1,29 @@
+specVersion: "1"
+id: lax-825748
+leanVersion: "v4.33.0"
+mathlibVersion: "db584cd6d46c92f209a44c0f1c829460d327499d"
+title: "The local realization of generating series of finite Lie rank"
+authors: []
+bibEntries:
+  - |
+    @incollection{Reutenauer1986,
+      author = {Reutenauer, Christophe},
+      title = {The local realization of generating series of finite Lie rank},
+      booktitle = {Algebraic and Geometric Methods in Nonlinear Control Theory},
+      editor = {Fliess, Michel and Hazewinkel, Michiel},
+      year = {1986},
+      pages = {33--43}
+    }
+  - |
+    @article{Fliess1983,
+      author = {Fliess, Michel},
+      title = {Réalisation locale des systèmes non linéaires, algèbres de Lie filtrées transitives et séries génératrices non commutatives},
+      journal = {Inventiones Mathematicae},
+      volume = {71},
+      year = {1983},
+      pages = {521--537}
+    }
+paper:
+  folder: paper
+  main: main.tex
+  engine: pdflatex

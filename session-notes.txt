@@ -1,0 +1,101 @@
+Task: formalize the analytic realization theorem in paper/main.tex, following
+`lax print instructions` and the Lax specification. Submission lax-825748.
+
+Status: complete. All 18 approved analytic statements have annotated Lean
+proofs. `lax build --nonstrict --replay` passes with 13 concepts, 18 proofs,
+and an 11-page paper with 12 active passage links. The final proof sources
+compile without warnings. Lax's three remaining warnings concern the local
+foundation packages and the import of their proof package.
+
+Scope: the main theorem (existence, minimal dimension, analytic equivalence)
+and its algebraic and analytic prerequisites. The control-system equations
+and input-output iterated-integral formula in the introduction motivate the
+theorem; they are not used in its proof and are not separate proof targets.
+Dimension zero and empty finite families of Lie polynomials are included.
+
+User-approved corrections, documented at the beginning of paper/main.tex:
+1. Definition 1 requires convergent vector fields.
+2. Lemma 5(ii): the diagonal coefficient is I!, not |I|!.
+3. The central binomial bound is binomial(2p,p) <= 4^p, not 2^p.
+The resulting factorial majorant alpha (2 d alpha C)^p p! is unchanged.
+
+The user approved all 13 analytic concept modules and 18 statements before
+proof work. All 14 Lean source hashes (including the root module) match
+concept-freeze.json. Significant changes to these concepts require approval.
+Concept axioms are the Lax statement convention; all now have separate proofs.
+No sorry, admit, proof axiom, or unsafe declaration occurs in the 21 proof modules.
+
+Algebraic dependency:
+- Lax208278 and Lax208278Proofs provide the checked formal realization theorem,
+  PBW, Proposition 1, and Lemmas 1-7. They also contain unrelated extensions.
+- The original ../reutenauer-1986 checkout began a separate generalization to
+  arbitrary coefficient fields during this task. It was not modified here.
+- The previously validated real-coefficient sources were isolated in
+  ../reutenauer-real-foundation from the existing archive
+  /tmp/reutenauer-before-coefficient-generalization.tar.gz. All 19 foundation
+  concepts match their validated build-output.json exactly. The 75 foundation
+  Lean sources are recorded by SHA-256 in foundation-snapshot.json.
+- Both local lakefiles require this isolated foundation by relative path.
+  Its source remains an unregistered draft. Before archive submission, register
+  the foundation bottom-up and replace path requirements with registered git
+  requirements. No publication or registration has been requested.
+
+Proof entry points:
+- AbsoluteConvergence: geometric bounds iff absolute summability at a positive
+  polyradius. PowerSeriesBounds and ConvergenceAlgebra: algebra and derivatives.
+- Majorants and WordMajorant: the quantitative iterated-vector-field estimate,
+  using the nonnegative series F_I = C^|I| and partial_i F <= C F^2.
+- Factorials and FactorialEstimate: multi-index comparison and common bounds.
+- NecessaryConvergence: finitely many Lie polynomials induce convergent fields,
+  so their ordered products satisfy condition (C).
+- ResidualConvergence: prepend letters to the tested family, iterate, and use
+  polynomial linearity; centering preserves (C).
+- WeightedMass, Composition, Reciprocal: weighted coefficient sums control
+  substitution and geometric series, giving composition and scalar inversion.
+- InverseFrame, TaylorCoefficients, AnalyticInverse: conjugated coordinate
+  derivations form the inverse Jacobian. Adjugates and reciprocal convergence
+  make its coefficients analytic. The word estimate gives geometric Taylor
+  bounds for inverse coordinates. This proves the analytic inverse theorem
+  directly, using the earlier factorial estimate rather than an external IFT.
+- PBWConvergence: cancel I! in the PBW expansion coefficient formula.
+- CoordinateEquivalence and AnalyticCoordinates: transfer convergent expansions
+  from PBW coordinates to arbitrary normalized coordinates.
+- Existence: normalized observation residuals define the analytic realization.
+- Realization: characterization and least dimension from existence, necessity,
+  and the formal rank lower bound. Uniqueness: the formal equivalence and its
+  inverse converge by the analytic coordinate theorem.
+
+Proof-network audit:
+`python3 audit_proofs.py` verifies frozen hashes and validated concept sources,
+then closes the actual annotated proof dependencies in topological order.
+All 18 analytic and 29 foundation statements close in nine layers. There are
+no missing proofs, duplicate conclusions, cycles, or unresolved assumptions.
+The file structure and actual dependency edges were reviewed. The inverse
+proof's use of the factorial estimate is explicit in the displayed graph.
+Revisit this audit before any submission.
+
+Validation commands, from this submission root:
+  lax build --nonstrict --replay
+  python3 audit_proofs.py
+For direct Lake commands use proofs/ or concepts/ as working directory so the
+pinned Lean 4.33.0 toolchain is selected. Do not run lake update. To build the
+entire foundation with the provisioned environment, run
+  lake build Lax208278Proofs
+from this submission's proofs/ directory. Running Lake directly inside the
+snapshot lacks the parent-generated dependency environment; one such attempt
+was stopped as soon as Lake tried to clone mathlib.
+
+Paper-link compatibility: Lax currently rejects passage markers for directly
+required sibling path packages despite their lakefile declarations. Eight
+foundation passages use ordinary "Formal foundation" comments. The 12 links
+to this submission's own concepts remain active. Restore and validate the
+foundation markers after switching to registered git dependencies.
+
+Preview: http://localhost:8126/lax-825748/ (HTTP 200 verified after the final
+build). The generated paper.pdf contains all three approved corrections; its
+first page was visually inspected. The mathematical sources are uncommitted.
+The only initial local commit contains LICENSE and .gitignore, because Lax
+requires a HEAD. No remote was added and nothing was published.
+
+The execution sandbox fails loopback setup in this session; shell tools used
+reviewed escalation. All changes are local and reversible.
